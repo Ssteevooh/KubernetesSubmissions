@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
         - name: theproject
-          image: ssteevooh/the_project:1.2
+          image: ssteevooh/the_project:1.5
