@@ -12,6 +12,13 @@ spec:
       labels:
         app: pingpong
     spec:
+      volumes:
+        - name: shared-volume
+          persistentVolumeClaim:
+            claimName: shared-claim
       containers:
         - name: pingpong
-          image: ssteevooh/ping_pong:1.9
+          image: ssteevooh/ping_pong:1.11
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /usr/src/app/files

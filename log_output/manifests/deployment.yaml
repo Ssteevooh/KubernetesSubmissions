@@ -12,17 +12,18 @@ spec:
       labels:
         app: logoutput
     spec:
-      volumes: # Define volume
-        - name: shared-logs
-          emptyDir: {}
+      volumes:
+        - name: shared-volume
+          persistentVolumeClaim:
+            claimName: shared-claim
       containers:
         - name: log-output-writer
-          image: ssteevooh/log_output_writer:1.10
-          volumeMounts: # Mount volume
-            - name: shared-logs
+          image: ssteevooh/log_output_writer:1.11
+          volumeMounts:
+            - name: shared-volume
               mountPath: /usr/src/app/files
         - name: log-output-reader
-          image: ssteevooh/log_output_reader:1.10
-          volumeMounts: # Mount volume
-            - name: shared-logs
+          image: ssteevooh/log_output_reader:1.11
+          volumeMounts:
+            - name: shared-volume
               mountPath: /usr/src/app/files
