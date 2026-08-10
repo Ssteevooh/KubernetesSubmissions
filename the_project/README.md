@@ -15,5 +15,5 @@ kubectl logs deployment/the-project-dep
 Browser:
 
 ```text
-http://localhost:8081
+http://localhost:8081/theproject
 ```
