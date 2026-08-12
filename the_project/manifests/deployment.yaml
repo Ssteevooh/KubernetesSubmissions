@@ -12,6 +12,13 @@ spec:
       labels:
         app: theproject
     spec:
+      volumes:
+        - name: shared-volume
+          persistentVolumeClaim:
+            claimName: shared-claim
       containers:
         - name: theproject
-          image: ssteevooh/the_project:1.5
+          image: ssteevooh/the_project:1.12
+          volumeMounts:
+            - name: shared-volume
+              mountPath: /usr/src/app/files
