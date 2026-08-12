@@ -18,7 +18,7 @@ spec:
             claimName: shared-claim
       containers:
         - name: theproject
-          image: ssteevooh/the_project:1.12
+          image: ssteevooh/the_project:1.13
           volumeMounts:
             - name: shared-volume
               mountPath: /usr/src/app/files

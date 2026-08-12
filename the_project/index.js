@@ -5,6 +5,7 @@ const fs = require("fs")
 const PORT = process.env.PORT || 3000
 
 const IMAGE_FILE = "/usr/src/app/files/image.jpg"
+const HTML_FILE = "index.html"
 const TEN_MINUTES = 10 * 60 * 1000
 
 function imageIsOld() {
@@ -46,13 +47,7 @@ const server = http.createServer((req, res) => {
   if (req.url === "/theproject") {
     updateImage(() => {
       res.writeHead(200, { "Content-Type": "text/html" })
-      res.end(`
-        <div style="text-align: center; font-family: Arial;">
-          <h1>Todo App</h1>
-          <img src="/theproject/image" style="width: 600px;">
-          <p>DevOps with Kubernetes 2026</p>
-        </div>
-      `)
+      res.end(fs.readFileSync(HTML_FILE, "utf8"))
     })
     return
   }
