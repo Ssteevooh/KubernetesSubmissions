@@ -1,26 +1,28 @@
-const http = require("http")
-const fs = require("fs")
+const http = require("http");
 
-const PORT = process.env.PORT || 3000
-const PING_FILE = "/usr/src/app/files/pingpong.txt"
+const PORT = process.env.PORT || 3000;
 
-let counter = 0
+let counter = 0;
 
 const server = http.createServer((req, res) => {
   if (req.url === "/pingpong") {
-    res.writeHead(200, { "Content-Type": "text/plain" })
+    counter += 1;
 
-    res.end(`pong ${counter}`)
-    fs.writeFileSync(PING_FILE, String(counter))
-
-    counter += 1
-    return
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end(`pong ${counter}`);
+    return;
   }
 
-  res.writeHead(404, { "Content-Type": "text/plain" })
-  res.end("404 - Not found")
-})
+  if (req.url === "/pings") {
+    res.writeHead(200, { "Content-Type": "text/plain" });
+    res.end(String(counter));
+    return;
+  }
+
+  res.writeHead(404, { "Content-Type": "text/plain" });
+  res.end("404 - Not found");
+});
 
 server.listen(PORT, () => {
-  console.log(`Server started in port ${PORT}`)
-})
+  console.log(`Server started in port ${PORT}`);
+});
