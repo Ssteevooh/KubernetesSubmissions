@@ -1,18 +1,21 @@
-<div style="text-align: center; font-family: Arial;">
+<div style="text-align: center; font-family: Arial">
   <h1>Todo App</h1>
 
-  <img src="/theproject/image" width="300">
+  <img src="/theproject/image" width="300" />
 
-  <form style="margin-top: 20px;">
-    <input maxlength="140" placeholder="Enter a new todo (max 140 characters)" style="width: 300px;">
+  <form action="/theproject/todos" method="post" style="margin-top: 20px">
+    <input
+      name="todo"
+      maxlength="140"
+      placeholder="Enter a new todo (max 140 characters)"
+      style="width: 300px"
+    />
     <button>Send</button>
   </form>
 
   <h2>Todos</h2>
 
-  <ul style="display: inline-block; text-align: left;">
-    <li>Learn Kubernetes basics</li>
-    <li>Deploy application to cluster</li>
-    <li>Configure persistent volumes</li>
+  <ul style="display: inline-block; text-align: left">
+    {{todos}}
   </ul>
 </div>
