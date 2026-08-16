@@ -15,4 +15,15 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: ssteevooh/ping_pong:2.1
+          image: ssteevooh/ping_pong:2.7
+          env:
+            - name: POSTGRES_HOST
+              value: postgres-svc
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: example
+            - name: POSTGRES_DATABASE
+              value: postgres
