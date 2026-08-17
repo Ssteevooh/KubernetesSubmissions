@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
             - name: wiki-todo
-              image: ssteevooh/todo_backend:2.9
+              image: ssteevooh/todo_backend:2.10
               command: ["node", "cronjob.js"]
               env:
                 - name: TODO_BACKEND_HOST
