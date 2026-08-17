@@ -1,6 +1,6 @@
 # Todo backend
 
-## Exercise 2.8. The project, step 11
+## Exercise 2.9. The project, step 12
 
 ```bash
 kubectl create namespace project
@@ -11,8 +11,8 @@ kubectl apply -f manifests/persistentvolume.yaml
 kubectl apply -f manifests/persistentvolumeclaim.yaml
 
 cd todo_backend
-docker build -t ssteevooh/todo_backend:2.8 .
-docker push ssteevooh/todo_backend:2.8
+docker build -t ssteevooh/todo_backend:2.9 .
+docker push ssteevooh/todo_backend:2.9
 
 cd ..
 kubectl apply -f todo_backend/manifests
@@ -24,6 +24,7 @@ kubectl get all -n project
 kubectl get pvc -n project
 kubectl get configmap -n project
 kubectl get secret -n project
+kubectl get cronjob -n project
 kubectl get ing -n project
 ```
 
