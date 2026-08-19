@@ -32,12 +32,6 @@ async function increaseCounter() {
 
 const server = http.createServer(async (req, res) => {
   if (req.url === "/") {
-    res.writeHead(200, { "Content-Type": "text/plain" });
-    res.end("ok");
-    return;
-  }
-
-  if (req.url === "/pingpong") {
     const counter = await increaseCounter();
 
     res.writeHead(200, { "Content-Type": "text/plain" });
