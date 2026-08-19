@@ -1,30 +1,34 @@
 # Ping-pong
 
-## Exercise 2.7. Stateful applications
+## Exercise 3.1. Pingpong GKE
 
 ```bash
-kubectl create namespace exercises
+gcloud container clusters create dwk-cluster \
+  --zone=europe-north1-b \
+  --cluster-version=1.36 \
+  --disk-size=32 \
+  --num-nodes=4 \
+  --machine-type=e2-small
+
+gcloud container clusters get-credentials dwk-cluster --zone=europe-north1-b
 
 cd ping_pong
-docker build -t ssteevooh/ping_pong:2.7 .
-docker push ssteevooh/ping_pong:2.7
+docker build -t ssteevooh/ping_pong:3.1 .
+docker push ssteevooh/ping_pong:3.1
 
 cd ..
+kubectl create namespace exercises
+
 kubectl apply -f ping_pong/manifests/postgres.yaml
-kubectl apply -f ping_pong/manifests
-kubectl apply -f log_output/manifests
+kubectl apply -f ping_pong/manifests/deployment.yaml
+kubectl apply -f ping_pong/manifests/service.yaml
 
-kubectl delete pod -l app=pingpong -n exercises
-kubectl delete pod -l app=logoutput -n exercises
-
-kubectl get all -n exercises
-kubectl get pvc -n exercises
-kubectl get ing -n exercises
+kubectl get pods -n exercises
+kubectl get svc -n exercises
 ```
 
 Browser:
 
 ```text
-http://localhost:8081/pingpong
-http://localhost:8081/logoutput
+http://EXTERNAL-IP/pingpong
 ```
