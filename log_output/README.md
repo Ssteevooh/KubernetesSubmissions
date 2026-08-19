@@ -1,32 +1,42 @@
 # Log output
 
-## Exercise 2.5. Documentation and ConfigMaps
+## Exercise 3.2. Back to Ingress
 
 ```bash
+gcloud container clusters get-credentials dwk-cluster --zone=europe-north1-b
+
+cd ping_pong
+docker build -t ssteevooh/ping_pong:3.2 .
+docker push ssteevooh/ping_pong:3.2
+
+cd ../log_output
+docker build -t ssteevooh/log_output_writer:3.2 ./writer
+docker push ssteevooh/log_output_writer:3.2
+
+docker build -t ssteevooh/log_output_reader:3.2 ./reader
+docker push ssteevooh/log_output_reader:3.2
+
+cd ..
 kubectl create namespace exercises
 
-cd log_output/writer
-docker build -t ssteevooh/log_output_writer:2.5 .
-docker push ssteevooh/log_output_writer:2.5
+kubectl apply -f ping_pong/manifests/postgres.yaml
+kubectl apply -f ping_pong/manifests/deployment.yaml
+kubectl apply -f ping_pong/manifests/service.yaml
 
-cd ../reader
-docker build -t ssteevooh/log_output_reader:2.5 .
-docker push ssteevooh/log_output_reader:2.5
+kubectl apply -f log_output/manifests/configmap.yaml
+kubectl apply -f log_output/manifests/deployment.yaml
+kubectl apply -f log_output/manifests/service.yaml
 
-cd ../..
-kubectl apply -f log_output/manifests
-kubectl apply -f ping_pong/manifests
-kubectl delete pod -l app=logoutput -n exercises
+kubectl apply -f manifests/ingress.yaml
 
-kubectl get all -n exercises
-kubectl get configmap -n exercises
+kubectl get pods -n exercises
+kubectl get svc -n exercises
 kubectl get ing -n exercises
-kubectl logs deployment/log-output-dep -c log-output-reader -n exercises
 ```
 
 Browser:
 
 ```text
-http://localhost:8081/logoutput
-http://localhost:8081/pingpong
+http://ADDRESS/pingpong
+http://ADDRESS/logoutput
 ```
