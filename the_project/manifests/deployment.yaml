@@ -19,7 +19,7 @@ spec:
             claimName: shared-claim
       containers:
         - name: theproject
-          image: ssteevooh/the_project:2.6
+          image: the_project
           envFrom:
             - configMapRef:
                 name: project-config
