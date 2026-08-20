@@ -1,11 +1,11 @@
 # The project
 
-## Exercise 3.5. The project, step 14
+## Exercise 3.6. The project, step 15
 
 ```bash
 cd the_project
-docker build -t ssteevooh/the_project:3.5 .
-docker push ssteevooh/the_project:3.5
+docker build -t europe-north1-docker.pkg.dev/dwk-gke-506008/my-repository/the_project:3.6 .
+docker push europe-north1-docker.pkg.dev/dwk-gke-506008/my-repository/the_project:3.6
 
 cd ..
 kubectl apply -k .

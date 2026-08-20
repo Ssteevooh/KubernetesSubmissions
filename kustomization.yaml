@@ -9,5 +9,5 @@ resources:
 
 images:
   - name: the_project
-    newName: ssteevooh/the_project
-    newTag: "3.5"
+    newName: europe-north1-docker.pkg.dev/dwk-gke-506008/my-repository/the_project
+    newTag: "3.6"
